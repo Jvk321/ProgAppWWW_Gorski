@@ -19,6 +19,33 @@
         </header>
         <main>
             <h1>coś</h1>
+            <form action="kontakt.html" method="get">
+                <div>
+                    <label for="email">e-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="produkt">Produkt</label>
+                    <select name="produkt" id="produkt" required>
+                        <option value="">-- Wybierz produkt --</option>
+                        <option value="p1">Lampka nocna led</option>
+                        <option value="p2">Wazon ceramiczny</option>
+                        <option value="p3">Świeca zapachowa</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="ilosc">Liczba sztuk</label>
+                    <input type="number" id="ilosc" name="ilosc" required min="1" max="5" step="1">
+                </div>
+                <div>
+                    <label for="wiadomosc">wiadomość:</label>
+                    <textarea name="wiadomosc" id="wiadomosc" required minlength="10" maxlength="500"></textarea>
+                </div>
+                <button type="submit">Sprawdź zapytanie</button>
+            </form>
+            <p>Formularz demonstracyjny. Dane pojawią się w adresie strony; zapytanie nie
+                zostanie zapisane ani wysłane e-mailem.
+            </p>
         </main>
         <footer>
             <div class="top-footer">
