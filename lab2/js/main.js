@@ -23,3 +23,38 @@ if(motyw == "dark"){
     document.documentElement.setAttribute("data-theme" , "light")
     document.getElementById("theme").setAttribute("aria-pressed", "false")
 }
+
+function time(){
+    const aktualnyTime = new Date()
+
+    let options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: false
+    }
+    const formatowanyTime = new Intl.DateTimeFormat("pl-PL", options).format(aktualnyTime)
+    document.getElementById("clock").textContent = formatowanyTime
+}
+
+time()
+let odswiezanieZegara = null;
+
+function startTime(){
+    time()
+    if(odswiezanieZegara == null){
+        odswiezanieZegara = setInterval(time, 1000);
+    }
+}
+
+function stopTime(){
+        clearInterval(odswiezanieZegara)
+        odswiezanieZegara = null
+}
+
+document.getElementById("start-clock").addEventListener("click", startTime)
+document.getElementById("stop-clock").addEventListener("click", stopTime)
+
