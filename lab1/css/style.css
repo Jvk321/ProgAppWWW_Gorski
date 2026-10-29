@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Young+Serif&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Outfit:wght@100..900&family=Young+Serif&display=swap');
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -5,19 +9,25 @@
 }
 
 :root {
-    --border-radius: 10px;
+    --border-radius: 18px;
+    --bg-color: #F7F3ED;
+    --font-fraunces: 'Fraunces';
+    --font-outfit: 'Outfit';
 }
 
 body {
     max-width: 1100px;
     width: 100%;
     margin: 0 auto;
-    background-color: #F7F3ED;
+    background-color: var(--bg-color);
     color: #312720;
+    font-family: var(--font-outfit);
 }
 
 h1{
     text-align: center;
+    font-size: 36px;
+    font-family: var(--font-fraunces);
 }
 
 main {
@@ -104,6 +114,7 @@ footer {
 
 .h-two {
     padding: 10px 0 20px 0;
+    font-size: 24px;
 }
 
 .opis {
@@ -119,6 +130,7 @@ form {
     margin: 20px auto;
     padding: 20px;
     background-color: #E8DCD0;
+    border-radius: 12px;
 }
 
 form div {
@@ -136,6 +148,7 @@ input, select, textarea {
     border: 1px solid #CDB9AA;
     background-color: #FFFDFC;
     color: #312720;
+    border-radius: 12px;
 }
 
 input:focus-visible {
@@ -155,11 +168,13 @@ select:focus-visible {
 }
 
 .button-style-one {
-    padding: 10px 20px;
+    height: 40px;
+    padding: 0px 20px;
     background-color: #66412F;
     color: #F7F3ED;
     border: none;
     cursor: pointer;
+    border-radius: 12px;
 }
 
 .button-style-one:hover {
@@ -191,6 +206,10 @@ select:focus-visible {
     background-color: #66412F;
     color: #F7F3ED;
     text-decoration: none;
+}
+
+.text-under-form {
+    text-align: center;
 }
 
 table {
