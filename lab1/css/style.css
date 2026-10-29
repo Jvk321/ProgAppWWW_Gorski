@@ -2,8 +2,18 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    background-color: #FAF7F2;
-    color: #29221E;
+}
+
+:root {
+    --border-radius: 10px;
+}
+
+body {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #F7F3ED;
+    color: #312720;
 }
 
 h1{
@@ -34,32 +44,45 @@ nav ul {
 
 nav a {
     text-decoration: none;
+    color: #66412F;
 }
 
+nav a:hover {
+    color: #A34F2F;
+}
+
+nav a[aria-current="page"]{
+    border-bottom: 3px solid #66412F;
+    padding-bottom: 5px;
+    color: #66412F;
+}
 
 .card-container {
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
     margin: 0 auto;
-    gap: 10px;
-}
-
-.card-container a {
-    text-decoration: none;
+    gap: 16px;
+    border-radius: var(--border-radius);
 }
 
 .card {
     max-width: 350px;
     height: auto;
-    display: flex;
     align-items: center;
-    align-items: center;
+    background-color: #E8DCD0;
+    color: #312720;
+    text-decoration: none;
+    width: 300px;
+    border-radius: var(--border-radius);
 }
 
 .card article {
     text-align: center;
-    background-color: #FFFFFF;
+}
+
+.cena {
+    color: #A34F2F;
 }
 
 footer {
@@ -95,7 +118,7 @@ form {
     max-width: 500px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #FFFFFF;
+    background-color: #E8DCD0;
 }
 
 form div {
@@ -104,25 +127,44 @@ form div {
 
 label {
     margin-bottom: 5px;
+    color:  #66412F;
 }
 
 input, select, textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #E9DED2;
-    background-color: #FFFFFF;
+    border: 1px solid #CDB9AA;
+    background-color: #FFFDFC;
+    color: #312720;
+}
+
+input:focus-visible {
+    outline: 2px solid #A34F2F;
 }
 
 textarea {
     height: 120px;
 }
 
-button {
+textarea:focus-visible {
+    outline: 2px solid #A34F2F;
+}
+
+select:focus-visible {
+    outline: 2px solid #A34F2F;
+}
+
+.button-style-one {
     padding: 10px 20px;
-    background-color: #C77C3D;
-    color: #FFFFFF;
+    background-color: #66412F;
+    color: #F7F3ED;
     border: none;
     cursor: pointer;
+}
+
+.button-style-one:hover {
+    background-color: #A34F2F;
+    color: #FFFFFF;
 }
 
 .product {
@@ -146,8 +188,8 @@ button {
 .product a {
     display: inline-block;
     padding: 10px;
-    background-color: #C77C3D;
-    color: white;
+    background-color: #66412F;
+    color: #F7F3ED;
     text-decoration: none;
 }
 
@@ -168,3 +210,4 @@ th, td {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
+
