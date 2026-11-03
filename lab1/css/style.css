@@ -16,7 +16,6 @@
 }
 
 body {
-    max-width: 1100px;
     width: 100%;
     margin: 0 auto;
     background-color: var(--bg-color);
@@ -32,9 +31,13 @@ h1{
 
 main {
     max-width: 1100px;
-    width: 100%;
     margin: 0 auto;
     padding: 20px;
+}
+
+header {
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 nav {
@@ -42,7 +45,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    margin: 0 20px;
+    flex-direction: column;
 }
 
 nav ul {
@@ -72,18 +75,22 @@ nav a[aria-current="page"]{
     grid-template-columns: 1fr;
     justify-items: center;
     margin: 0 auto;
-    gap: 16px;
+    gap: 40px;
     border-radius: var(--border-radius);
+    margin: 20px 0;
+    max-width: 1100px;
+    width: 100%;
 }
 
 .card {
-    max-width: 350px;
+    max-width: 250px;
+    min-width: 200px;
+    width: 100%;
     height: auto;
     align-items: center;
     background-color: #E8DCD0;
     color: #312720;
     text-decoration: none;
-    width: 300px;
     border-radius: var(--border-radius);
 }
 
@@ -91,38 +98,54 @@ nav a[aria-current="page"]{
     text-align: center;
 }
 
+.card img {
+    width: 70%;
+    min-width: 200px;
+    max-width: 250px;
+    border-radius: var(--border-radius);
+}
+
 .cena {
     color: #A34F2F;
 }
 
 footer {
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #EDE2D7;
+    color: #4A382F;
 }
 
 .top-footer {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
 .bottom-footer {
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
 .h-two {
-    padding: 10px 0 20px 0;
+    padding: 20px 0 20px 0;
     font-size: 24px;
 }
 
 .opis {
     padding: 10px 0 10px 0;
+    color: #6E5243;
+    font-size: 16px;
 }
 
 .cena {
-    padding: 10px 0 10px 0;
+    padding: 10px 0 20px 0;
+    font-weight: 600;
+    font-size: 24px;
 }
 
 form {
@@ -185,11 +208,42 @@ select:focus-visible {
 .product {
     max-width: 700px;
     margin: 0 auto;
+    background-color: #E8DCD0;
+    border-radius: var(--border-radius);
+    padding: 30px 15px;
 }
 
-.product img {
+.product-img {
     display: block;
     margin: 0 auto;
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+.product-header {
+    font-size: 24px;
+    font-family: "Outfit";
+    margin: 20px 0px;
+    text-align: left;
+}
+
+.cena-product {
+    font-size: 24px;
+    color: #A34F2F;
+    font-weight: 600;
+}
+
+#product-button {
+    width: 100%;
+    text-align: center;
+    align-content: center;
+    padding: 10px;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+.product-h-three {
+    margin-top: 20px;
 }
 
 .product p {
@@ -225,8 +279,25 @@ th, td {
 }
 
 @media (min-width: 768px) {
+    nav {
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 0 auto;
+        width: 88%;
+    }
     .card-container {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+    }
+    .card {
+        max-width: 260px;
+        min-width: 225px;
+        width: 100%;
+        padding: 0 10px;
+    }
+    .card img{
+        min-width: 180px;
+        max-width: 250px;
     }
 }
 

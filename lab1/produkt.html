@@ -9,7 +9,7 @@
     <body>
          <header>
             <nav>
-                <img src="./img/logo/chwila_logo_glowne.svg" alt="logo firmy chwila" width="300px">
+                <img src="./img/logo/chwila_logo_glowne.svg" alt="logo firmy chwila" width="300">
                <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
@@ -19,20 +19,23 @@
         </header>
         <main>
             <section class="product">
-                <img src="./img/produkt_1/produkt1.png" alt="" width="300px" height="300px">
+                <img class="product-img" src="./img/produkt_1/produkt1.png" alt="lampka led">
                 <div>
-                    <h1>Lampka nocna led</h1>
+                    <h1 class="product-header">Lampka nocna led</h1>
+                    <p class="cena-product">130 zł</p>
+                    <a href="./kontakt.html" id="product-button" class="button-style-one">Zapytaj o produkt</a>
+                    <hr />
+                    <h3 class="product-h-three">Opis produktu</h3>
                     <p><strong>Nowoczesna lampka LED</strong> z drewnianą podstawą, która wprowadza ciepłe, przyjemne światło i tworzy przytulną atmosferę w sypialni lub salonie. Minimalistyczny design doskonale pasuje do każdego wnętrza.</p>
-                    <p>130 zł</p>
+                    <h3>Zalety produktu</h3>
                     <ul>
                         <li>Przyjemne światło</li>
                         <li>Minimalistyczny design</li>
                         <li>Prosta obsługa</li>
                     </ul>
-                    <a href="./kontakt.html" class="button-style-one">Zapytaj o produkt</a>
                 </div>
                 <table>
-                    <caption></caption>
+                    <caption>Specyfikacja techniczna lampki nocnej LED</caption>
                     <thead>
                         <tr>
                             <th scope="col">Cecha produktu</th>
@@ -53,7 +56,6 @@
                             <td>Tworzywo sztuczne, podstawa imitująca drewno</td>
                         </tr>
                     </tbody>
-                    <caption>Specyfikacja techniczna lampki nocnej LED</caption>
                 </table>
             </section>
         </main>
