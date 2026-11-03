@@ -58,3 +58,15 @@ function stopTime(){
 document.getElementById("start-clock").addEventListener("click", startTime)
 document.getElementById("stop-clock").addEventListener("click", stopTime)
 
+
+
+const input = document.getElementById("search")
+input.addEventListener("input", productFilter)
+
+
+function productFilter(){
+    let szukanyProdukt = input.value
+    szukanyProdukt = szukanyProdukt.toLowerCase().trim()
+    const produkty = document.querySelectorAll(".card")
+    produkty.forEach((produkt)=>{let nazwaProduktu = produkt.querySelector("h2").textContent.toLowerCase().trim(); nazwaProduktu.includes(szukanyProdukt)})
+}
