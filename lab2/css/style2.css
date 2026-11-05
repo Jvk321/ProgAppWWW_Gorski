@@ -9,38 +9,110 @@
 }
 
 :root {
-    --border-radius: 18px;
-    --bg-color: #F7F3ED;
-    --text-color: #312720;
-    --card-bg: #E8DCD0;
-    --form-bg: #E8DCD0;
-    --input-bg: #FFFFFF;
-    --input-border: #E9DED2;
+    /*fonty*/
     --font-fraunces: 'Fraunces';
     --font-outfit: 'Outfit';
+
+    /*nawigacja*/
+    --nav-bg: #F7F3ED;
+    --nav-text: #66412F;
+    --nav-hover: #A34F2F;
+    --nav-underline: #66412F;
+
+    /*katalog produktów*/
+    --body-bg-color: #F7F3ED;
+    --h-color: #312720;
+    --price-color: #A34F2F;
+    --description-color: #6E5243;
+
+    /*produkt*/
+    --card-bg: #E8DCD0;
+    --h-product-color: #312720;
+    --product-text-color: #6E5243;
+    --product-price: #A34F2F;
+
+    /*formularz*/
+    --form-bg: #E8DCD0;
+    --input-bg: #FFFDFC;
+    --input-border: #CDB9AA;
+    --input-border-focus: #A34F2F;
+    --input-text: #312720;
+    --label-text: #66412F;
+
+    /*stopka*/
+    --footer-bg: #EDE2D7;
+    --footer-text: #744026;
+
+    /*przycisk nr 1*/
+    --btn-bg-one: #66412F;
+    --btn-text-one: #F7F3ED;
+    --btn-hover-one: #A34F2F;
+
+    /*tabela*/
+    --table-bg: #CDB9AA;
+
+    /*zegar*/
+    --clock-text-color: #293241;
+
+    --border-radius: 18px;
 }
 
 [data-theme="dark"]{
-    --bg-color: #0F3040;
-    --text-color: #E1DCC9;
-    --card-bg: #464858;
-    --form-bg: #464858;
-    --input-bg: #464858;
-    --input-border: #E9DED2;
+    /*nawigacja*/
+    --nav-bg: #191616;
+    --nav-text: #F0D0B5;
+    --nav-hover: #E8A078;
+    --nav-underline: #F0D0B5;
+
+    /*katalog produktów*/
+    --body-bg-color: #191616;
+    --h-color: #F6EFE7;
+    --price-color: #E8A078;
+    --description-color: #D9C4B2;
+
+    /*produkt*/
+    --card-bg: #221D1C;
+    --h-product-color: #F6EFE7;
+    --product-text-color: #D9C4B2;
+    --product-price: #E8A078;
+
+    /*formularz*/
+    --form-bg: #302725;
+    --input-bg: #241F1E;
+    --input-border: #4A3B37;
+    --input-border-focus: #E8A078;
+    --input-text: #F6EFE7;
+    --label-text: #F0D0B5;
+
+    /*stopka*/
+    --footer-bg: #221D1C;
+    --footer-text: #E8D9CB;
+
+    /*przycisk nr 1*/
+    --btn-bg-one: #E8A078;
+    --btn-text-one: #191616;
+    --btn-hover-one: #F0D0B5;
+
+    /*tabela*/
+    --table-bg: #E9DED2;
+
+    /*zegar*/
+    --clock-text-color: #F6EFE7;
 }
 
 body {
-    background-color: var(--bg-color);
+    background-color: var(--body-bg-color);
     color: var(--text-color);
     width: 100%;
     margin: 0 auto;
     font-family: var(--font-outfit);
 }
 
-h1{
+h1 {
     text-align: center;
     font-size: 36px;
     font-family: var(--font-fraunces);
+    color: var(--h-product-color);
 }
 
 main {
@@ -61,6 +133,7 @@ nav {
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
+    background-color: var(--nav-bg);
 }
 
 nav ul {
@@ -72,19 +145,38 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: #66412F;
+    color: var(--nav-text);
 }
 
 nav a:hover {
-    color: #A34F2F;
+    color: var(--nav-hover);
 }
 
 nav a[aria-current="page"]{
-    border-bottom: 3px solid #66412F;
+    border-bottom: 3px solid var(--nav-underline);
     padding-bottom: 5px;
-    color: #66412F;
+    color: var(--nav-text);
 }
 
+.clock-pos {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+#clock {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: var(--clock-text-color);
+}
+
+#start-clock {
+    margin-right: 10px;
+}
+
+#stop-clock {
+    margin-left: 10px;
+}
 
 .card-container {
     display: grid;
@@ -105,7 +197,7 @@ nav a[aria-current="page"]{
     height: auto;
     align-items: center;
     background-color: var(--card-bg);
-    color: #312720;
+    color: var(--description-color);
     text-decoration: none;
     border-radius: var(--border-radius);
 }
@@ -122,7 +214,7 @@ nav a[aria-current="page"]{
 }
 
 .cena {
-    color: #A34F2F;
+    color: var(--price-color);
 }
 
 footer {
@@ -130,8 +222,8 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #EDE2D7;
-    color: #4A382F;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
 }
 
 .top-footer {
@@ -150,11 +242,12 @@ footer {
 .h-two {
     padding: 20px 0 20px 0;
     font-size: 24px;
+    color: var(--h-product-color);
 }
 
 .opis {
     padding: 10px 0 10px 0;
-    color: #6E5243;
+    color: var(--description-color);
     font-size: 16px;
 }
 
@@ -178,19 +271,20 @@ form div {
 
 .text-under-form {
     text-align: center;
+    color: var(--description-color);
 }
 
 label {
     margin-bottom: 5px;
-    color:  #66412F;
+    color:  var(--label-text);
 }
 
 input, select, textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #CDB9AA;
-    background-color: #FFFDFC;
-    color: #312720;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--input-text);
     border-radius: 12px;
 }
 
@@ -213,24 +307,25 @@ select:focus-visible {
 .button-style-one {
     height: 40px;
     padding: 0px 20px;
-    background-color: #66412F;
-    color: #F7F3ED;
+    background-color: var(--btn-bg-one);
+    color: var(--btn-text-one);
     border: none;
     cursor: pointer;
     border-radius: 12px;
 }
 
 .button-style-one:hover {
-    background-color: #A34F2F;
-    color: #FFFFFF;
+    background-color: var(--btn-hover-one);
+    color: var(--btn-text-one);
 }
 
 .product {
     max-width: 700px;
     margin: 0 auto;
-    background-color: #E8DCD0;
+    background-color: var(--card-bg);
     border-radius: var(--border-radius);
     padding: 30px 15px;
+    color: var(--product-text-color);
 }
 
 .product img {
@@ -249,7 +344,7 @@ select:focus-visible {
 
 .cena-product {
     font-size: 24px;
-    color: #A34F2F;
+    color: var(--price-color);
     font-weight: 600;
 }
 
@@ -277,7 +372,7 @@ select:focus-visible {
 .product a {
     display: inline-block;
     padding: 10px;
-    background-color: #66412F;
+    background-color: var(--btn-bg-one);
     color: #F7F3ED;
     text-decoration: none;
 }
@@ -289,7 +384,7 @@ table {
 }
 
 th, td {
-    border: 1px solid #E9DED2;
+    border: 1px solid var(--table-bg);
     padding: 10px;
     text-align: left;
 }

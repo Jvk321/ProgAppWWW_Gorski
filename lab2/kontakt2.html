@@ -12,18 +12,23 @@
             <nav>
                 <img src="./img/logo/chwila_logo_glowne.svg" alt="logo firmy chwila" width="300px">
                <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="kontakt.html" aria-current="page">Kontakt</a></li>
-                <li><a href="produkt.html">Produkt</a></li>
-                <button type="button" id="theme" aria-pressed="false" >Tryb ciemny</button>
+                <li><a href="index2.html">Home</a></li>
+                <li><a href="kontakt2.html" aria-current="page">Kontakt</a></li>
+                <li><a href="produkt2.html">Produkt</a></li>
+                <button type="button" id="theme" class="button-style-one" aria-pressed="false" >Tryb ciemny</button>
                </ul>
             </nav>
         </header>
+        <div class="clock-pos">
+            <div id="clock"></div>
+            <button type="button" id="start-clock" class="button-style-one">Start zegara</button>
+            <button type="button" id="stop-clock" class="button-style-one">Stop zegara</button>
+        </div>
         <main>
             <h1>Kontakt</h1>
             <form action="kontakt.html" method="get">
                 <div>
-                    <label for="email">e-mail:</label>
+                    <label for="email">E-mail:</label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div>
@@ -40,12 +45,12 @@
                     <input type="number" id="ilosc" name="ilosc" required min="1" max="5" step="1">
                 </div>
                 <div>
-                    <label for="wiadomosc">wiadomość:</label>
+                    <label for="wiadomosc">Wiadomość:</label>
                     <textarea name="wiadomosc" id="wiadomosc" required minlength="10" maxlength="500"></textarea>
                 </div>
-                <button type="submit">Sprawdź zapytanie</button>
+                <button type="submit" class="button-style-one">Sprawdź zapytanie</button>
             </form>
-            <p>Formularz demonstracyjny. Dane pojawią się w adresie strony; zapytanie nie
+            <p class="text-under-form">Formularz demonstracyjny. Dane pojawią się w adresie strony; zapytanie nie
                 zostanie zapisane ani wysłane e-mailem.
             </p>
         </main>
