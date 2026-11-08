@@ -389,6 +389,22 @@ th, td {
     text-align: left;
 }
 
+#search-catalog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#search-catalog label {
+    font-size: 20px;
+}
+
+#search-catalog input {
+    width: 300px;
+}
+
 @media (min-width: 768px) {
     nav {
         flex-direction: row;
