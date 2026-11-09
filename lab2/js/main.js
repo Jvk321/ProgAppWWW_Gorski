@@ -1,3 +1,4 @@
+//Zmiana motywu i zapamiętanie wyboru
 function dark_theme (){
     const motywAktualny = document.documentElement.getAttribute("data-theme")
     
@@ -13,17 +14,28 @@ function dark_theme (){
 }
 
 const btn = document.getElementById("theme")
-btn.addEventListener("click", dark_theme) 
+if(btn != null){
+    btn.addEventListener("click", dark_theme)
+}
 
 const motyw = localStorage.getItem("themes")
 if(motyw == "dark"){
     document.documentElement.setAttribute("data-theme" , "dark")
-    document.getElementById("theme").setAttribute("aria-pressed", "true")
+    if (btn !== null) {
+        btn.setAttribute("aria-pressed", "true")
+    }
 }else{
     document.documentElement.setAttribute("data-theme" , "light")
-    document.getElementById("theme").setAttribute("aria-pressed", "false")
+    if (btn !== null){
+        btn.setAttribute("aria-pressed", "false")
+    }
 }
 
+
+
+const clock = document.getElementById("clock")
+
+//data i zegar
 function time(){
     const aktualnyTime = new Date()
 
@@ -37,16 +49,21 @@ function time(){
         hour12: false
     }
     const formatowanyTime = new Intl.DateTimeFormat("pl-PL", options).format(aktualnyTime)
-    document.getElementById("clock").textContent = formatowanyTime
+    clock.textContent = formatowanyTime
 }
 
-time()
+if (clock !== null) {
+    time()
+}
+
 let odswiezanieZegara = null;
 
 function startTime(){
-    time()
-    if(odswiezanieZegara == null){
+    if (clock !== null) {
+        time()
+        if(odswiezanieZegara == null){
         odswiezanieZegara = setInterval(time, 1000);
+        }
     }
 }
 
@@ -55,14 +72,23 @@ function stopTime(){
         odswiezanieZegara = null
 }
 
-document.getElementById("start-clock").addEventListener("click", startTime)
-document.getElementById("stop-clock").addEventListener("click", stopTime)
+const clockStart = document.getElementById("start-clock")
+const clockStop = document.getElementById("stop-clock")
+
+if(clockStart != null){
+    clockStart.addEventListener("click", startTime)
+}
+
+if(clockStop != null){
+    clockStop.addEventListener("click", stopTime)
+}
 
 
-
+//Filtrowanie produktów bez przeładowania
 const input = document.getElementById("search")
-input.addEventListener("input", productFilter)
-
+if (input !== null) {
+    input.addEventListener("input", productFilter)
+}
 
 function productFilter(){
     let ilosc = 0;
@@ -87,6 +113,7 @@ function productFilter(){
 
 
 
+//Obliczenie wartości i podsumowanie
 const rzecz1 = {
     id: "p1",
     nazwa: "Lampka nocna led",
@@ -108,10 +135,30 @@ const rzecz3 = {
 let rzeczy = [rzecz1, rzecz2, rzecz3];
 
 const select = document.querySelector("#produkty");
-select.addEventListener('change', aktualizacjaZapytania)
+if (select !== null) {
+    select.addEventListener("change", aktualizacjaZapytania)
+}
 
 const inputOne = document.querySelector("#ilosc");
-inputOne.addEventListener('input', aktualizacjaZapytania)
+if (inputOne !== null) {
+    inputOne.addEventListener("input", aktualizacjaZapytania)
+}
+
+function sprawdzDane(){
+    let idProduktu = select.value
+    let wybranyProdukt = rzeczy.find(rzecz => rzecz.id === idProduktu)
+    let iloscRzeczy = inputOne.value
+    iloscRzeczy = Number(iloscRzeczy)
+    if(wybranyProdukt != null){
+        if(Number.isInteger(iloscRzeczy) == false || (iloscRzeczy < 1 || iloscRzeczy > 5)){
+            return null
+        }else{
+            return {wybranyProdukt, iloscRzeczy}
+        }
+    }else{
+        return null
+    }
+}
 
 function kosztProduktu(cena, ilosc){
     let cenaCalkowitaProduktuWGroszach = (cena*ilosc)
@@ -119,51 +166,76 @@ function kosztProduktu(cena, ilosc){
 }
 
 function aktualizacjaZapytania(){
-    let idProduktu = select.value
-    let wybranyProdukt = rzeczy.find(rzecz => rzecz.id === idProduktu)
-    if(wybranyProdukt != null){
-        document.getElementById("komunikatOne").textContent = ""
-        let cenaWGroszach = wybranyProdukt.cenaGrosze
-        let iloscRzeczy = inputOne.value
-        iloscRzeczy = Number(iloscRzeczy)
-        if(Number.isInteger(iloscRzeczy) == false || (iloscRzeczy < 1 || iloscRzeczy > 5)){
-            document.getElementById("komunikatTwo").textContent = "Błąd! Podaj liczbę całkowitą między 1 - 5!"
-            document.getElementById("cenaCalkowita").textContent = ""
-        }else{
+    document.getElementById("podsumowanie").hidden=true
+    let walidacja = sprawdzDane()
+    if(walidacja===null){
+        document.getElementById("cenaCalkowita").textContent = ""
+        if(select.value == ""){
+            document.getElementById("komunikatOne").textContent = "Błąd! Wybierz produkt!"
             document.getElementById("komunikatTwo").textContent = ""
-            let aktualnaCenaWZlotych = kosztProduktu(cenaWGroszach, iloscRzeczy)/100
-            let pln = new Intl.NumberFormat("pl-PL", { style: "currency", currency: "PLN" }).format(aktualnaCenaWZlotych)
-            document.getElementById("cenaCalkowita").textContent = "Cena Całkowita: " + pln
+        }else {
+            document.getElementById("komunikatTwo").textContent = "Błąd! Podaj liczbę całkowitą między 1 - 5!"
+            document.getElementById("komunikatOne").textContent = ""
         }
     }else {
-        document.getElementById("komunikatOne").textContent = "Błąd! Wybierz produkt!"
+        let aktualnyProdukt = walidacja.wybranyProdukt
+        let aktualnaIlosc = walidacja.iloscRzeczy
+        let cenaWGroszach = aktualnyProdukt.cenaGrosze
+        let aktualnaCenaWZlotych = kosztProduktu(cenaWGroszach, aktualnaIlosc)/100
+        let pln = new Intl.NumberFormat("pl-PL", { style: "currency", currency: "PLN" }).format(aktualnaCenaWZlotych)
+        document.getElementById("cenaCalkowita").textContent = "Cena Całkowita: " + pln
+        document.getElementById("komunikatOne").textContent = ""
         document.getElementById("komunikatTwo").textContent = ""
-        document.getElementById("cenaCalkowita").textContent = ""
     }
 }
 
 const sumbitDane = document.querySelector("#potwierdzenie")
-sumbitDane.addEventListener("submit", zatrzymaniePrzeladowania)
+if (sumbitDane !== null) {
+    sumbitDane.addEventListener("submit", podsumowanieFormularza)
+}
 
-function zatrzymaniePrzeladowania(event){
+function podsumowanieFormularza(event){
     event.preventDefault()
+    let walidacja = sprawdzDane()
+    if(walidacja === null){
+        document.getElementById("podsumowanie").hidden=true
+        aktualizacjaZapytania()
+        return
+    }
+
     let wiad = document.getElementById("wiadomosc").value.trim()
     if(wiad.length < 10){
+        document.getElementById("podsumowanie").hidden=true
         document.getElementById("komunikatThree").textContent = "Błąd! Wiadomość musi zawierać co najmniej 10 znaków"
         document.getElementById("wiadomosc").focus()
     }else{
+        document.getElementById("podsumowanie").hidden=false
         document.getElementById("komunikatThree").textContent = ""
+
+        // pokaz podsumowanie
+        document.getElementById("pod-produkt").textContent = walidacja.wybranyProdukt.nazwa
+        document.getElementById("pod-ilosc").textContent = walidacja.iloscRzeczy
+        let cenaWGroszach = walidacja.wybranyProdukt.cenaGrosze
+        let aktualnaCenaWZlotych = kosztProduktu(cenaWGroszach, walidacja.iloscRzeczy)/100
+        let pln = new Intl.NumberFormat("pl-PL", { style: "currency", currency: "PLN" }).format(aktualnaCenaWZlotych)
+        document.getElementById("pod-cena").textContent = pln
+        document.getElementById("pod-wiadomosc").textContent = wiad
     }
 }
 
 function usunKomunikat(){
+    document.getElementById("podsumowanie").hidden=true
     let wiad = document.getElementById("wiadomosc").value.trim()
     if(wiad.length >= 10){
         document.getElementById("komunikatThree").textContent = ""
     }
 }
 
-document.getElementById("wiadomosc").addEventListener("input", usunKomunikat)
+const wiadomosc = document.getElementById("wiadomosc")
+
+if (wiadomosc !== null) {
+    wiadomosc.addEventListener("input", usunKomunikat)
+}
 
 
 

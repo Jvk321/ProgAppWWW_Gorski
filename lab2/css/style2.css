@@ -272,6 +272,7 @@ form div {
 .text-under-form {
     text-align: center;
     color: var(--description-color);
+    margin-top: 40px;
 }
 
 label {
@@ -302,6 +303,66 @@ textarea:focus-visible {
 
 select:focus-visible {
     outline: 2px solid #A34F2F;
+}
+
+#cenaCalkowita {
+    color: var(--input-text);
+}
+
+#podsumowanie {
+    margin: 20px auto;
+    width: 85%;
+    max-width: 500px;
+    background-color: var(--form-bg);
+    border-radius: 12px;
+    color: var(--input-text);
+    padding: 20px;
+}
+
+.podsumowanie-wiersz {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin: 8px 0;
+}
+
+#podsumowanie h2 {
+    font-family: var(--font-fraunces);
+    color: var(--h-color);
+    padding: 10px 0px;
+}
+
+#podsumowanie h3 {
+    font-family: var(--font-fraunces);
+    color: var(--label-text);
+    font-size: 18px;
+    margin: 15px 0;
+}
+
+#pod-cena {
+    color: var(--price-color);
+    font-size: 24px;
+    font-weight: 600;
+}
+
+#pod-wiadomosc {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border: 1px solid var(--input-border);
+    padding: 12px;
+    border-radius: 10px;
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+}
+
+#podsumowanie hr {
+    border: none;
+    border-top: 1px solid var(--input-border);
+}
+
+#podsumowanie[hidden] {
+    display: none;
 }
 
 .button-style-one {
