@@ -462,6 +462,10 @@ th, td {
     font-size: 20px;
 }
 
+#wynik {
+    color: var(--description-color);
+}
+
 #search-catalog input {
     width: 300px;
 }
