@@ -470,6 +470,22 @@ th, td {
     width: 300px;
 }
 
+/*przyciski demo*/
+#demo-section{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.animation {
+    box-sizing: border-box;
+    width: 160px;
+    height: 90px;
+}
+
+
+
 @media (min-width: 768px) {
     nav {
         flex-direction: row;
