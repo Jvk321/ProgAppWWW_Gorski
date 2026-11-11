@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/style3.css" rel="stylesheet">
+        <script src="js/main2.js" defer></script>
+        <title>Kontakt</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <img src="./img/logo/chwila_logo_glowne.svg" alt="logo firmy chwila" width="300px">
+               <ul>
+                <li><a href="index3.html">Home</a></li>
+                <li><a href="kontakt3.html" aria-current="page">Kontakt</a></li>
+                <li><a href="produkt3.html">Produkt</a></li>
+                <button type="button" id="theme" class="button-style-one" aria-pressed="false" >Tryb ciemny</button>
+               </ul>
+            </nav>
+        </header>
+        <div class="clock-pos">
+            <div id="clock"></div>
+            <button type="button" id="start-clock" class="button-style-one">Start zegara</button>
+            <button type="button" id="stop-clock" class="button-style-one">Stop zegara</button>
+        </div>
+        <main>
+            <h1>Kontakt</h1>
+            <form id="potwierdzenie" action="kontakt3.html" method="get">
+                <div>
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="produkt">Produkt</label>
+                    <select name="produkt" id="produkty" required>
+                        <option value="">-- Wybierz produkt --</option>
+                        <option value="p1">Lampka nocna led</option>
+                        <option value="p2">Wazon ceramiczny</option>
+                        <option value="p3">Świeca zapachowa</option>
+                    </select>
+                    <div id="komunikatOne"></div>
+                </div>
+                <div>
+                    <label for="ilosc">Liczba sztuk</label>
+                    <input type="number" id="ilosc" name="ilosc" required min="1" max="5" step="1">
+                    <div id="komunikatTwo"></div>
+                </div>
+                <div>
+                    <label for="wiadomosc">Wiadomość:</label>
+                    <textarea name="wiadomosc" id="wiadomosc" required minlength="10" maxlength="500"></textarea>
+                    <div id="komunikatThree"></div>
+                </div>
+                <div id="cenaCalkowita"></div>
+                <button type="submit" class="button-style-one">Sprawdź zapytanie</button>
+            </form>
+            <p class="text-under-form">Podgląd lokalny. Formularz nie wysyła wiadomości
+            </p>
+        </main>
+        <section id="podsumowanie" hidden>
+            <h2>Podsumowanie zapytania</h2>
+            <hr>
+            <div class="podsumowanie-wiersz">
+                <h3>Produkt</h3>
+                <div id="pod-produkt"></div>
+            </div>
+            <div class="podsumowanie-wiersz">
+                <h3>Liczba sztuk</h3>
+                <div id="pod-ilosc"></div>
+            </div>
+            <div class="podsumowanie-wiersz">
+                <h3>Wartość zapytania</h3>
+                <div id="pod-cena"></div>
+            </div>
+            <h3>Treść wiadomości</h3>
+            <div id="pod-wiadomosc"></div>
+        </section>
+        <footer>
+            <div class="top-footer">
+                <h3>Kontakt</h3>
+                <p>kontakt@chwila.com</p>
+                <p>+48 123 456 789</p>
+                <p>Olsztyn, Polska</p>
+            </div>
+            <div class="bottom-footer">
+                <p>&copy; 2026 Chwila. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </footer>
+    </body>
+</html>

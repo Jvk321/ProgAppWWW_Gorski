@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/style3.css" rel="stylesheet">
+        <script src="./vendor/jquery-4.0.0.min.js" defer></script>
+        <script src="js/main2.js" defer></script>
+        <title>Chwila</title>
+    </head>
+    <body>
+         <header>
+            <nav>
+                <img src="./img/logo/chwila_logo_glowne.svg" alt="logo firmy chwila" width="300px">
+               <ul>
+                <li><a href="index3.html" aria-current="page">Home</a></li>
+                <li><a href="kontakt3.html">Kontakt</a></li>
+                <li><a href="produkt3.html">Produkt</a></li>
+                <button type="button" id="theme" class="button-style-one" aria-pressed="false" >Tryb ciemny</button>
+               </ul>
+            </nav>
+        </header>
+        <div class="clock-pos">
+            <div id="clock"></div>
+            <button type="button" id="start-clock" class="button-style-one">Start zegara</button>
+            <button type="button" id="stop-clock" class="button-style-one">Stop zegara</button>
+        </div>
+        <main>
+            <h1>Produkty</h1>
+            <div id="search-catalog">
+                <label for="search">Wyszukaj produkt:</label>
+                <input type="search" id="search" size="30">
+                <p id="wynik" aria-live="polite"></p>
+            </div>
+            <section class="card-container">
+                <a href="produkt3.html" class="card">
+                    <article>
+                        <h2 class="h-two">Lampka nocna led</h2>
+                        <img src="./img/produkt_1/produkt1.png" alt="lampka led">
+                        <p class="opis">Idealna do sypialni i przytulnych wnętrz</p>
+                        <p class="cena">130 zł</p>
+                    </article>
+                </a>
+                <a href="#" class="card">
+                    <article>
+                        <h2 class="h-two">Wazon ceramiczny</h2>
+                        <img src="./img/p2.png" alt="wazon ceramiczny">
+                        <p class="opis">idealny do nowoczesnych wnętrz</p>
+                        <p class="cena">105 zł</p>
+                    </article>
+                </a>
+                <a href="#" class="card">
+                    <article>
+                        <h2 class="h-two">Świeca zapachowa</h2>
+                        <img src="./img/p3.png" alt="świeca zapachowa">
+                        <p class="opis">w szkle, która tworzy relaksującą atmosferę</p>
+                        <p class="cena">59 zł</p>
+                    </article>
+                </a>
+            </section>
+        </main>
+        <footer>
+            <div class="top-footer">
+                <h3>Kontakt</h3>
+                <p>kontakt@chwila.com</p>
+                <p>+48 123 456 789</p>
+                <p>Olsztyn, Polska</p>
+            </div>
+            <div class="bottom-footer">
+                <p>&copy; 2026 Chwila. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </footer>
+    </body>
+</html>
