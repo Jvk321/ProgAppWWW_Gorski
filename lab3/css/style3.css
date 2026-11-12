@@ -478,6 +478,16 @@ th, td {
     gap: 30px;
 }
 
+.demo-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#c-status {
+    color: var(--description-color);
+}
 .animation {
     box-sizing: border-box;
     width: 160px;

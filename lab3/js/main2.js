@@ -289,3 +289,18 @@ $("#btn-animation-b").on("mouseenter mouseleave focus blur", function(event){
     }
 })
 
+let counter = 0
+
+
+$("#btn-animation-c").on("click", function(){
+    if(!$(this).is(":animated")){
+        if(counter < 5){
+            counter++
+            $("#c-status").text("Licznik: " + counter)
+            $(this).animate({
+                width: 160 + counter * 20,
+                height: 90 + counter * 10
+            })
+        }
+    }
+})
