@@ -304,3 +304,18 @@ $("#btn-animation-c").on("click", function(){
         }
     }
 })
+
+$("#stop-ani").on("click", function(){
+    $("#btn-animation-a").stop(true, false).css({
+        width: "160px",
+        height: "90px"
+    })
+    an = false
+    document.getElementById("btn-animation-a").setAttribute("aria-pressed", "false")
+    $("#btn-animation-c").stop(true, false).css({
+        width: "160px",
+        height: "90px"
+    })
+    counter = 0
+    $("#c-status").text("Licznik: " + counter)
+})

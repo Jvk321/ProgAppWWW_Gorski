@@ -478,11 +478,21 @@ th, td {
     gap: 30px;
 }
 
+#d-container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 .demo-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: center;
+}
+
+#stop-ani{
+    align-self: center;
 }
 
 #c-status {
