@@ -1,3 +1,4 @@
+//lab2
 //Zmiana motywu i zapamiętanie wyboru
 function dark_theme (){
     const motywAktualny = document.documentElement.getAttribute("data-theme")
@@ -237,6 +238,7 @@ if (wiadomosc !== null) {
     wiadomosc.addEventListener("input", usunKomunikat)
 }
 
+//lab3
 // jQuery
 
 //wykonuje animacje natychmiast
@@ -325,3 +327,23 @@ $("#stop-ani").on("click", function(){
     $("#c-status").text("Licznik: " + counter)
 })
 
+//AJAX
+$("#check-server").on("click", function(){
+    $("#server-status").text("Ładowanie...")
+    $("#check-server").prop("disabled", true)
+    $.ajax({
+        url: "status.php",
+        method: "GET",
+        dataType: "text",
+        timeout: 5000
+    })
+    .done(function(data){
+        $("#server-status").text(data)
+    })
+    .fail(function(){
+        $("#server-status").text("Błąd połączenia z serwerem")
+    })
+    .always(function(){
+        $("#check-server").prop("disabled", false)
+    })
+})
