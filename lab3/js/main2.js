@@ -236,3 +236,56 @@ const wiadomosc = document.getElementById("wiadomosc")
 if (wiadomosc !== null) {
     wiadomosc.addEventListener("input", usunKomunikat)
 }
+
+// jQuery
+
+let an = false
+$("#btn-animation-a").on("click", function(){
+    if(an == false){
+        $(this).stop(true, false).animate({
+            width: "240px",
+            height: "130px",
+        }, 300)
+        an = true
+        document.getElementById("btn-animation-a").setAttribute("aria-pressed", "true")
+    }else{
+        $(this).stop(true, false).animate({
+            width: "160px",
+            height: "90px"
+        }, 300)
+        an = false
+        document.getElementById("btn-animation-a").setAttribute("aria-pressed", "false")
+    }
+})
+
+let mouseOver = false
+let focusOn = false
+
+$("#btn-animation-b").on("mouseenter mouseleave focus blur", function(event){
+    let eventType = event.type
+    if(eventType === "mouseenter"){
+        mouseOver = true
+    }
+    if(eventType === "mouseleave"){
+        mouseOver = false
+    }
+    if(eventType === "focus"){
+        focusOn = true
+    }
+    if(eventType === "blur"){
+        focusOn = false
+    }
+
+    if(mouseOver === true || focusOn === true){
+        $(this).stop(true, false).animate({
+            width: "220px",
+            height: "120px"
+        }, 300)
+    }else{
+        $(this).stop(true, false).animate({
+            width: "160px",
+            height: "90px"
+        }, 300)
+    }
+})
+
