@@ -239,6 +239,11 @@ if (wiadomosc !== null) {
 
 // jQuery
 
+//wykonuje animacje natychmiast
+let reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches
+$.fx.off = reduceMotion
+
+
 let an = false
 $("#btn-animation-a").on("click", function(){
     if(an == false){
@@ -319,3 +324,4 @@ $("#stop-ani").on("click", function(){
     counter = 0
     $("#c-status").text("Licznik: " + counter)
 })
+
