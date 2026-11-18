@@ -516,6 +516,48 @@ th, td {
     color: var(--description-color);
 }
 
+/*filmy*/
+.filmy {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.film {
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.film iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 200px;
+    border: 0;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.filmy h2 {
+    color: var(--nav-text);
+    padding: 20px;
+}
+
+.filmy p {
+    color: var(--nav-text);
+}
+
+.filmy a {
+    text-decoration: none;
+    color: var(--nav-text);
+}
+
 @media (min-width: 768px) {
     nav {
         flex-direction: row;

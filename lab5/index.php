@@ -4,28 +4,56 @@
     $widoki = [
     "glowna" => [
         "tytul" => "Home",
-        "plik" => __DIR__ . "/html/glowna.html"
+        "plik" => "html/glowna.html"
     ],
     "kontakt" => [
         "tytul" => "Kontakt",
-        "plik" => __DIR__ . "/html/kontakt.html"
+        "plik" => "html/kontakt.html"
     ],
     "produkt" => [
         "tytul" => "Produkt",
-        "plik" => __DIR__ . "/html/produkt.html"
+        "plik" => "html/produkt.html"
     ],
     "filmy" => [
         "tytul" => "Filmy",
-        "plik" => __DIR__ . "/html/filmy.html"
+        "plik" => "html/filmy.html"
     ]
 ];
 
 $idp = "glowna";
+$bladWidoku = "";
 
-if(isset($_GET["idp"]) && is_string($_GET["idp"])){
-    if(isset($widoki[$_GET["idp"]])){
-        $idp = $_GET["idp"];
+if(isset($_GET["idp"])){
+    if(is_string($_GET["idp"])){
+        if($_GET["idp"] !== ""){
+            if(isset($widoki[$_GET["idp"]])){
+                $idp = $_GET["idp"];
+            }else{
+                http_response_code(404);
+                $bladWidoku = "Nie znaleziono podstrony.";
+            }
+        }
+    }else{
+        http_response_code(404);
+        $bladWidoku = "Nie znaleziono podstrony.";
     }
+}
+
+$sciezka = "";
+
+if($bladWidoku === ""){
+    $sciezka = __DIR__ . "/" . $widoki[$idp]["plik"];
+
+    if(!is_file($sciezka) || !is_readable($sciezka)){
+        http_response_code(500);
+        $bladWidoku = "Wystąpił błąd serwera.";
+    }
+}
+
+$tytul = "Błąd";
+
+if($bladWidoku === ""){
+    $tytul = $widoki[$idp]["tytul"];
 }
 
 ?>
@@ -37,7 +65,7 @@ if(isset($_GET["idp"]) && is_string($_GET["idp"])){
         <link href="./css/style4.css" rel="stylesheet">
         <script src="./vendor/jquery-4.0.0.min.js" defer></script>
         <script src="js/main3.js" defer></script>
-        <title><?php echo htmlspecialchars($widoki[$idp]["tytul"], ENT_QUOTES, "UTF-8"); ?> | Chwila</title>
+        <title><?php echo htmlspecialchars($tytul, ENT_QUOTES, "UTF-8"); ?> | Chwila</title>
     </head>
     <body>
          <header>
@@ -47,7 +75,7 @@ if(isset($_GET["idp"]) && is_string($_GET["idp"])){
                 <?php
                     foreach($widoki as $id => $widok){
                         echo '<li><a href="index.php?idp=' . $id . '"';
-                        if($idp === $id){
+                        if($bladWidoku === "" && $idp === $id){
                             echo ' aria-current="page"';
                         }
                         echo '>' . htmlspecialchars($widok["tytul"], ENT_QUOTES, "UTF-8") . '</a></li>';
@@ -67,7 +95,12 @@ if(isset($_GET["idp"]) && is_string($_GET["idp"])){
 
         <main>
             <?php 
-                include $widoki[$idp]["plik"];
+                if($bladWidoku === ""){
+                    include $sciezka;
+                }else{
+                    echo "<p>" . htmlspecialchars($bladWidoku, ENT_QUOTES, "UTF-8") . "</p>";
+                    echo '<a href="index.php">Powrót do strony głównej</a>';
+                }
             ?>
         </main>
 
