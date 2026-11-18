@@ -1,0 +1,51 @@
+<h1>Produkty</h1>
+
+<div id="search-catalog">
+    <label for="search">Wyszukaj produkt:</label>
+    <input type="search" id="search" size="30">
+    <p id="wynik" aria-live="polite"></p>
+</div>
+
+<section class="card-container">
+    <a href="index.php?idp=produkt" class="card">
+        <article>
+            <h2 class="h-two">Lampka nocna led</h2>
+            <img src="./img/produkt_1/produkt1.png" alt="lampka led">
+            <p class="opis">Idealna do sypialni i przytulnych wnętrz</p>
+            <p class="cena">130 zł</p>
+        </article>
+    </a>
+    <a href="#" class="card">
+        <article>
+            <h2 class="h-two">Wazon ceramiczny</h2>
+            <img src="./img/p2.png" alt="wazon ceramiczny">
+            <p class="opis">idealny do nowoczesnych wnętrz</p>
+            <p class="cena">105 zł</p>
+        </article>
+    </a>
+    <a href="#" class="card">
+        <article>
+            <h2 class="h-two">Świeca zapachowa</h2>
+            <img src="./img/p3.png" alt="świeca zapachowa">
+            <p class="opis">w szkle, która tworzy relaksującą atmosferę</p>
+            <p class="cena">59 zł</p>
+        </article>
+    </a>
+</section>
+
+<section id="d-container">
+    <div id="demo-section">
+        <button id="btn-animation-a" class="animation" type="button" aria-pressed="false">click</button>
+        <button id="btn-animation-b" class="animation" type="button">click</button>
+        <div class="demo-container">
+            <button id="btn-animation-c" class="animation" type="button">click</button>
+            <p id="c-status" role="status">Licznik: 0</p>
+        </div>
+    </div>
+    <button id="stop-ani" type="button" class="animation">Resetuj A i C</button>
+</section>
+
+<section id="sekcja-sprawdz-server">
+    <button type="button" id="check-server">Sprawdź serwer</button>
+    <p id="server-status" role="status"></p>
+</section>

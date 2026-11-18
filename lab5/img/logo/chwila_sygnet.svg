@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="350" viewBox="0 0 300 350" role="img" aria-label="Chwila – sygnet">
+    <title>Chwila – sygnet</title>
+    <desc>Logo wektorowe marki Chwila. Ścieżki wektorowe i przezroczyste tło, bez osadzonych obrazów i zależności od czcionek.</desc>
+<g transform="translate(26 24) scale(1)">
+      <path d="M28 250 V130 C28 81 70 35 116 12 C122 9 126 9 132 12 C178 35 220 81 220 130 V250" stroke="#4C5B49" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M55 275 H193" stroke="#4C5B49" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <circle cx="128" cy="87" r="23" fill="#D3C1AF"/>
+      <path d="M124 256 C121 218 111 176 101 157" stroke="#C27E59" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <path d="M121 245 C109 213 85 190 53 178 C57 208 80 231 121 245 Z" fill="#C27E59"/>
+      <path d="M117 214 C116 177 98 153 68 135 C67 163 84 197 117 214 Z" fill="#C27E59"/>
+      <path d="M122 255 C129 224 153 203 179 192 C180 225 160 244 122 255 Z" fill="#C27E59"/>
+    </g>
+</svg>
