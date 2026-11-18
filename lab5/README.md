@@ -1,4 +1,12 @@
-## Punkt odniesienia
+## Instrukcja uruchomienia
+
+1. Umieść katalog lab5 w C:\xampp\htdocs\lab5 lub utwórz dowiązanie do katalogu projektu.
+2. Uruchom XAMPP.
+3. Włącz serwer Apache.
+4. Otwórz przeglądarkę.
+5. Przejdź do adresu: http://localhost/lab5/index.php
+
+### Punkt odniesienia
 Filtr katalogu: 
 - Działa poprawnie, produkty są filtrowane według wybranej kategorii.
 
@@ -8,7 +16,7 @@ Zapis wyboru:
 AJAX do status.php: 
 - Żądanie działa poprawnie, serwer zwraca komunikat PHP działa.
 
-## Testy
+### Testy
 
 Przeglądarka: Google Chrome
 Środowisko: XAMPP, Apache, PHP
@@ -99,3 +107,75 @@ wynik:
 Odtwarzacze mieszczą się w widoku 360 px.
 Brak automatycznego odtwarzania.
 
+## Mapa widoków
+
+- W pliku index.php znajduje się tablica $widoki.
+
+Zarejestrowane identyfikatory:
+
+- glowna – Home – html/glowna.html
+- kontakt – Kontakt – html/kontakt.html
+- produkt – Produkt – html/produkt.html
+- filmy – Filmy – html/filmy.html
+
+- Menu generowane jest za pomocą pętli foreach.
+- Wybrany widok ma atrybut aria-current="page".
+- Tytuł strony jest pobierany z mapy i zabezpieczany przez htmlspecialchars() z kodowaniem UTF-8.
+
+## Pseudokod wyboru widoku
+Utwórz mapę widoków.
+
+Ustaw domyślny widok na "glowna".
+
+Odczytaj parametr idp z $_GET.
+
+JEŚLI idp nie istnieje lub jest pustym tekstem:
+    Wybierz stronę główną.
+
+W PRZECIWNYM RAZIE:
+    JEŚLI idp jest tekstem i istnieje w mapie:
+        Wybierz odpowiedni widok.
+    W PRZECIWNYM RAZIE:
+        Ustaw HTTP 404.
+        Zapisz komunikat błędu.
+
+JEŚLI nie wystąpił błąd:
+    Zbuduj ścieżkę przez __DIR__ i wartość z mapy.
+
+    JEŚLI plik nie istnieje lub nie jest czytelny:
+        Ustaw HTTP 500.
+        Zapisz komunikat błędu.
+
+Wygeneruj wspólny szablon HTML.
+
+Wygeneruj menu na podstawie mapy.
+
+JEŚLI nie wystąpił błąd:
+    Dołącz wybrany plik przez include.
+W PRZECIWNYM RAZIE:
+    Wyświetl komunikat błędu.
+    Wyświetl link powrotny do strony głównej.
+
+
+## Różnica między idp i kategoria
+
+idp: parametr służący do wyboru podstrony w index.php.
+
+Przykład:
+index.php?idp=filmy
+
+kategoria: 
+parametr służący do filtrowania produktów w lab4.php.
+
+Przykład:
+lab4.php?kategoria=ksiazki
+
+- Parametr idp wybiera widok strony, natomiast kategoria wybiera produkty do wyświetlenia w katalogu.
+
+## Różnica między HTTP 404 i HTTP 500
+
+HTTP 404: nie znaleziono podstrony.
+- W projekcie występuje, gdy podany identyfikator nie istnieje w mapie lub ma nieprawidłowy typ.
+
+HTTP 500: błąd po stronie serwera.
+- W projekcie występuje, gdy widok istnieje w mapie, ale jego plik nie istnieje albo nie można go odczytać.
