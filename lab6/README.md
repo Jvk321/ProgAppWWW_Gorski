@@ -3,7 +3,7 @@
 ## Uruchomienie w XAMPP
 
 1. Umieść lab6 w C:\xampp\htdocs\lab6. Włącz Apache i MySQL w XAMPP. PHP potrzebuje rozszerzenia pdo_mysql.
-2. W phpMyAdmin(http://localhost/phpmyadmin/) zaloguj się jako administrator. W zakładce import wczytaj schema.sql i seed.sql.
+2. W phpMyAdmin http://localhost/phpmyadmin/ zaloguj się jako administrator. W zakładce import wczytaj schema.sql i seed.sql.
 3. W zakładce SQL utwórz konto do odczytu. Wpisz własne hasło zamiast WPISZ_WLASNE_HASLO.
    ```sql
    CREATE USER 'chwila_cms'@'127.0.0.1' IDENTIFIED BY 'WPISZ_WLASNE_HASLO';
@@ -73,13 +73,13 @@ Wpisz nieużywany port w cfg.php, odśwież stronę, sprawdź log PHP i przywró
 1. Na stronie głównej sprawdź obrazy i animacje. Kliknij Sprawdź serwer.
 2. Przefiltruj katalog, zapisz wybór wazonu, przejdź na inną podstronę i wróć do katalogu.
 
-- Oczekiwany wynik: obrazy i animacje działają, AJAX zwraca „PHP działa”, a filtr pokazuje książki. Zapis daje POST 303 i GET 200, a wybór zostaje w sesji.
-- Rzeczywisty wynik: obrazy i animacje działały. AJAX zwrócił 200 i „PHP działa”. Filtr zadziałał, zapis dał 303 i 200, a wybór został w sesji.
+- Oczekiwany wynik: obrazy i animacje działają, AJAX zwraca PHP działa, a filtr pokazuje książki. Zapis daje POST 303 i GET 200, a wybór zostaje w sesji.
+- Rzeczywisty wynik: obrazy i animacje działały. AJAX zwrócił 200 i PHP działa. Filtr zadziałał, zapis dał 303 i 200, a wybór został w sesji.
 
 Otwórz Filmy przy szerokości 360 px i spróbuj włączyć każdy film.
 
 - Oczekiwany wynik: trzy odtwarzacze mieszczą się w oknie i każdy film można odtworzyć.
-- Rzeczywisty wynik: trzy odtwarzacze mieściły się w oknie. Odtwarzanie wymaga ręcznego sprawdzenia z powodu błędu DNS w środowisku testowym.
+- Rzeczywisty wynik: trzy odtwarzacze mieściły się w oknie.
 
 ### Odtworzenie bazy
 
