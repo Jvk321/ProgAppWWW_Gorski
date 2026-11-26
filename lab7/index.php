@@ -92,7 +92,7 @@ $tytul = $strona["page_title"] ?? "Błąd";
             </div>
             <div class="bottom-footer">
                 <p>&copy; 2026 Chwila. Wszelkie prawa zastrzeżone.</p>
-                <p>Identyfikator projektu: <?php echo $idetyfikator; ?> | v1.5</p>
+                <p>Identyfikator projektu: <?php echo $idetyfikator; ?> | v1.6</p>
             </div>
         </footer>
     </body>
