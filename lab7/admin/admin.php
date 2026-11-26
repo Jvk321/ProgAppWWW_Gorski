@@ -32,6 +32,68 @@ function ListaPodstron($pdo){
     return $podstrony;
 }
 
+function EdytujPodstrone($pdo, $id, $czyPost){
+    $odczyt = $pdo->prepare(
+        "SELECT id, alias, page_title, page_content, status FROM page_list WHERE id = :id"
+    );
+    $odczyt->execute(["id" => $id]);
+    $podstrona = $odczyt->fetch(PDO::FETCH_ASSOC);
+
+    if($podstrona === false){
+        http_response_code(404);
+        exit("Nie znaleziono podstrony.");
+    }
+
+    if(!$czyPost){
+        return $podstrona;
+    }
+
+    $tytul = $_POST["page_title"] ?? null;
+    $tresc = $_POST["page_content"] ?? null;
+    $publikacja = $_POST["status"] ?? null;
+
+    if(!is_string($tytul) || !is_string($tresc) ||
+        !mb_check_encoding($tytul, "UTF-8") || !mb_check_encoding($tresc, "UTF-8") ||
+        ($publikacja !== null && $publikacja !== "1")){
+        http_response_code(400);
+        exit("Nieprawidłowe dane formularza.");
+    }
+
+    $tytul = trim($tytul);
+    if($tytul === "" || mb_strlen($tytul, "UTF-8") > 255){
+        http_response_code(400);
+        exit("Tytuł musi mieć od 1 do 255 znaków.");
+    }
+
+    $status = $publikacja === "1" ? 1 : 0;
+    if($podstrona["alias"] === "glowna" && $status === 0){
+        http_response_code(409);
+        exit("Strona główna musi pozostać opublikowana.");
+    }
+
+    require_once __DIR__ . "/../includes/oczysc_tresc.php";
+    $tresc = trim(OczyscTresc($tresc));
+    if($tresc === "" || strlen($tresc) > 60000){
+        http_response_code(400);
+        exit("Treść po oczyszczeniu musi mieć od 1 do 60 000 bajtów.");
+    }
+
+    $zapis = $pdo->prepare(
+        "UPDATE page_list SET page_title = :tytul, page_content = :tresc, status = :status
+         WHERE id = :id"
+    );
+    $zapis->execute([
+        "tytul" => $tytul,
+        "tresc" => $tresc,
+        "status" => $status,
+        "id" => $id
+    ]);
+
+    $_SESSION["komunikat_admin"] = "Zapisano zmiany.";
+    header("Location: admin.php", true, 303);
+    exit;
+}
+
 $czyPost = $_SERVER["REQUEST_METHOD"] === "POST";
 $zalogowany = ($_SESSION["admin_zalogowany"] ?? false) === true;
 $blad = "";
@@ -61,13 +123,13 @@ if($czyPost){
         exit;
     }
 
-    if($akcja !== "logowanie"){
+    if($akcja !== "logowanie" && $akcja !== "edytuj"){
         http_response_code(400);
         exit("Nieprawidłowa akcja.");
     }
 }
 
-$akcjaWidoku = "lista";
+$akcjaWidoku = $czyPost && $akcja === "edytuj" ? "edytuj" : "lista";
 
 if(!$czyPost && isset($_GET["akcja"])){
     if(!$zalogowany){
@@ -82,13 +144,15 @@ if(!$czyPost && isset($_GET["akcja"])){
         exit("Nieprawidłowa akcja.");
     }
 
-    if($akcjaWidoku === "edytuj" || $akcjaWidoku === "usun"){
-        $id = $_GET["id"] ?? null;
-        if(!is_string($id) || filter_var($id, FILTER_VALIDATE_INT) === false || (int) $id < 1){
-            http_response_code(400);
-            exit("Nieprawidłowy identyfikator podstrony.");
-        }
+}
+
+if($akcjaWidoku === "edytuj" || $akcjaWidoku === "usun"){
+    $id = $czyPost ? ($_POST["id"] ?? null) : ($_GET["id"] ?? null);
+    if(!is_string($id) || filter_var($id, FILTER_VALIDATE_INT) === false || (int) $id < 1){
+        http_response_code(400);
+        exit("Nieprawidłowy identyfikator podstrony.");
     }
+    $id = (int) $id;
 }
 
 try {
@@ -101,7 +165,11 @@ try {
         $podstrony = ListaPodstron($pdoAdmin);
     }
 
-    if($czyPost){
+    if($zalogowany && $akcjaWidoku === "edytuj"){
+        $podstrona = EdytujPodstrone($pdoAdmin, $id, $czyPost);
+    }
+
+    if($czyPost && $akcja === "logowanie"){
         $login = $_POST["login"] ?? "";
         $haslo = $_POST["haslo"] ?? "";
 
@@ -225,6 +293,38 @@ unset($_SESSION["komunikat_admin"]);
                         <?php } ?>
                     </tbody>
                 </table>
+            <?php }elseif($akcjaWidoku === "edytuj"){ ?>
+                <h2>Edytuj podstronę</h2>
+                <p>Alias: <?= htmlspecialchars($podstrona["alias"], ENT_QUOTES, "UTF-8") ?></p>
+
+                <form class="formularz-panelu" method="post" action="admin.php">
+                    <input type="hidden" name="akcja" value="edytuj">
+                    <input type="hidden" name="id" value="<?= (int) $podstrona["id"] ?>">
+                    <input type="hidden" name="csrf"
+                           value="<?= htmlspecialchars($csrf, ENT_QUOTES, "UTF-8") ?>">
+
+                    <div>
+                        <label for="page_title">Tytuł</label>
+                        <input type="text" id="page_title" name="page_title" required
+                               value="<?= htmlspecialchars($podstrona["page_title"], ENT_QUOTES, "UTF-8") ?>">
+                    </div>
+
+                    <div>
+                        <label for="page_content">Treść HTML</label>
+                        <textarea id="page_content" name="page_content" rows="12" required><?= htmlspecialchars($podstrona["page_content"], ENT_QUOTES, "UTF-8") ?></textarea>
+                    </div>
+
+                    <div>
+                        <label for="status">
+                            <input type="checkbox" id="status" name="status" value="1"
+                                   <?= (int) $podstrona["status"] === 1 ? "checked" : "" ?>>
+                            Opublikowana
+                        </label>
+                    </div>
+
+                    <button type="submit">Zapisz</button>
+                    <a href="admin.php">Anuluj</a>
+                </form>
             <?php }else{ ?>
                 <p>Ta akcja zostanie udostępniona w dalszej części laboratorium.</p>
                 <p><a href="admin.php">Wróć do listy</a></p>

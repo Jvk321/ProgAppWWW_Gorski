@@ -1,2 +1,4 @@
 /cfg.php
 /admin/cfg_admin.php
+/vendor/*
+!/vendor/jquery-4.0.0.min.js
